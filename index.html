@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8.EE.1 Integer Exponents - Matching Knowledge Check - Interactive Practice</title>
+<style>
+  :root {
+    --navy: #1a3a5c;
+    --navy-dark: #10253d;
+    --gold: #c9a227;
+    --gold-light: #e8d38a;
+    --cream: #faf8f3;
+    --green: #2e7d47;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Calibri, "Segoe UI", Arial, sans-serif;
+    background: var(--cream);
+    color: var(--navy-dark);
+    margin: 0;
+    padding: 0 0 60px 0;
+  }
+  header {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 24px 20px;
+    text-align: center;
+    border-bottom: 6px solid var(--gold);
+  }
+  header h1 {
+    margin: 0 0 6px 0;
+    font-size: 1.5em;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .student-field {
+    background: #fff;
+    border: 2px solid var(--navy);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    max-width: 500px;
+  }
+  .student-field label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    color: var(--navy);
+  }
+  .student-field input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    font-family: inherit;
+    border: 1px solid #999;
+    border-radius: 5px;
+  }
+  .instructions-banner {
+    background: #fff8e6;
+    border-left: 4px solid var(--gold);
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-size: 0.95em;
+  }
+  .match-layout {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .terms-column {
+    flex: 1 1 420px;
+    min-width: 320px;
+  }
+  .definitions-column {
+    flex: 1 1 400px;
+    min-width: 300px;
+    background: #fff;
+    border: 2px solid var(--navy);
+    border-radius: 8px;
+    padding: 18px 20px;
+    position: sticky;
+    top: 16px;
+  }
+  .definitions-column h3 {
+    margin-top: 0;
+    color: var(--navy);
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 8px;
+  }
+  .def-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95em;
+    transition: color 0.2s, opacity 0.2s;
+  }
+  .def-item:last-child { border-bottom: none; }
+  .def-item.revealed {
+    text-decoration: line-through;
+    color: #9aa3ac;
+    opacity: 0.75;
+  }
+  .def-letter {
+    font-weight: bold;
+    color: var(--navy);
+    margin-right: 6px;
+  }
+  .def-item.revealed .def-letter {
+    color: #b8a05a;
+  }
+  .term-row {
+    background: #fff;
+    margin: 10px 0;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .term-label {
+    flex: 1 1 240px;
+    color: var(--navy-dark);
+  }
+  .term-title {
+    font-weight: bold;
+    font-size: 1.05em;
+  }
+  .term-number {
+    color: var(--gold);
+    font-weight: bold;
+    margin-right: 4px;
+  }
+  .term-notation {
+    margin-top: 6px;
+    padding-left: 24px;
+    font-size: 1.25em;
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .term-notation sup {
+    font-size: 0.65em;
+    line-height: 0;
+  }
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 1.25;
+  }
+  .frac .num {
+    padding: 0 6px 2px 6px;
+    border-bottom: 1.5px solid var(--navy);
+  }
+  .frac .den {
+    padding: 2px 6px 0 6px;
+  }
+  .answer-input {
+    width: 55px;
+    padding: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    border: 1px solid #999;
+    border-radius: 5px;
+    font-family: inherit;
+  }
+  .answer-input:focus {
+    outline: 3px solid var(--gold-light);
+    border-color: var(--gold);
+  }
+  .submit-section {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    border-top: 2px solid var(--gold);
+  }
+  button.submit-btn {
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-weight: bold;
+    font-size: 1.05em;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  button.submit-btn:hover { background: var(--gold-light); }
+  button.submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .status-msg {
+    margin-top: 14px;
+    font-weight: bold;
+    color: var(--navy);
+    font-size: 1.05em;
+  }
+  .score-box {
+    display: none;
+    margin: 18px auto 0 auto;
+    max-width: 420px;
+    background: #fff8e6;
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 14px 20px;
+    color: var(--navy);
+  }
+  .score-label { font-size: 0.95em; }
+  .score-percent {
+    font-size: 2.4em;
+    font-weight: bold;
+    line-height: 1.1;
+    color: var(--navy);
+  }
+  .score-detail { font-size: 1em; margin-top: 2px; }
+  .score-note { font-size: 0.85em; color: #555; margin-top: 8px; }
+  @media (max-width: 760px) {
+    .definitions-column { position: static; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>8.EE.1 Integer Exponents - Matching Knowledge Check - Interactive Practice</h1>
+</header>
+
+<div class="container">
+
+  <div class="student-field">
+    <label for="studentName">Student Name:</label>
+    <input type="text" id="studentName" placeholder="Type your full name">
+  </div>
+
+  <div class="instructions-banner">
+    Match each numbered rule on the left to its description in words on the right. Type the letter of the matching description in the box next to each rule.
+  </div>
+
+  <div class="match-layout">
+    <div class="terms-column" id="termsColumn"></div>
+    <div class="definitions-column">
+      <h3>Descriptions in Words</h3>
+      <div id="definitionsList"></div>
+    </div>
+  </div>
+
+  <div class="submit-section">
+    <button class="submit-btn" id="submitBtn" onclick="submitQuiz()">Submit Activity</button>
+    <div class="status-msg" id="statusMsg"></div>
+    <div class="score-box" id="scoreBox"></div>
+  </div>
+
+</div>
+
+<script>
+/* =========================================================
+   CONFIG: paste your deployed Google Apps Script Web App URL here
+   (deploy the companion Apps Script file for THIS quiz, not the vocab quiz)
+   ========================================================= */
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbySXs_-0EW2Ix2MkG37brHxNxHWZYdotePiERV_g2_dYLc-ckzMA2cPKmvDwxKojMQ6/exec";
+
+const TOTAL_TERMS = 8;
+
+/* =========================================================
+   TERMS - numbered 1-8 in reference table order.
+   title: full rule name (from the reference image)
+   notationHtml: algebraic notation shown to the student
+   The answer key is NOT stored in this file. Grading happens
+   in the Google Apps Script.
+   ========================================================= */
+const terms = [
+  { id: 1, title: "Zero Power",
+    notationHtml: "a<sup>0</sup>" },
+  { id: 2, title: "Negative Power",
+    notationHtml: "a<sup>&minus;n</sup>" },
+  { id: 3, title: "Product of Powers (Same Base)",
+    notationHtml: "a<sup>m</sup> &middot; a<sup>n</sup>" },
+  { id: 4, title: "Quotient of Powers (Same Base)",
+    notationHtml: "a<sup>m</sup> / a<sup>n</sup>" },
+  { id: 5, title: "Exponent Multiplication Rule",
+    notationHtml: "(a<sup>m</sup>)<sup>n</sup>" },
+  { id: 6, title: "Same-Exponent Rule (Different Bases)",
+    notationHtml: "(a<sup>n</sup>)(b<sup>n</sup>)" },
+  { id: 7, title: "Nested Exponent Expressions",
+    notationHtml: "(a<sup>m</sup> &middot; a<sup>n</sup>)<sup>p</sup>" },
+  { id: 8, title: "Multi-Variable Quotient Expressions",
+    notationHtml: '<span class="frac"><span class="num">x<sup>m</sup>y<sup>n</sup></span><span class="den">x<sup>p</sup>y<sup>t</sup></span></span>' }
+];
+
+/* =========================================================
+   DESCRIPTIONS LIST - labeled A-H in fixed order.
+   Letters are shuffled relative to the term numbers.
+   ========================================================= */
+const definitionsByLetter = [
+  { letter: "A", text: "When multiplying powers that share a base, keep the base and add the exponents." },
+  { letter: "B", text: "When two different bases have an identical exponent, multiply the bases together and keep that exponent the same. (The base cannot be 0.)" },
+  { letter: "C", text: "Reduce the coefficient to simplest form, then divide the like variables one at a time by subtracting their exponents." },
+  { letter: "D", text: "Any nonzero number with an exponent of 0 equals 1." },
+  { letter: "E", text: "Simplify inside the parentheses first by adding the exponents of the shared base, then multiply the result's exponent by the exponent outside the parentheses. Convert any negative exponent to a fraction." },
+  { letter: "F", text: "When dividing powers that share a base, keep the base and subtract the exponents." },
+  { letter: "G", text: "Any nonzero number with a negative exponent equals 1 divided by that number with the opposite (positive) exponent." },
+  { letter: "H", text: "To raise a power to a power, keep the base and multiply the exponents." }
+];
+
+const VALID_LETTERS = definitionsByLetter.map(d => d.letter);
+
+const alreadySubmitted = {};
+terms.forEach(t => { alreadySubmitted[t.id] = false; });
+
+function buildActivity() {
+  const termsColumn = document.getElementById("termsColumn");
+  terms.forEach(t => {
+    const row = document.createElement("div");
+    row.className = "term-row";
+    row.id = "row-" + t.id;
+    row.innerHTML = `
+      <div class="term-label">
+        <div class="term-title"><span class="term-number">${t.id}.</span>${t.title}</div>
+        <div class="term-notation">${t.notationHtml}</div>
+      </div>
+      <input type="text" class="answer-input" id="input-${t.id}" maxlength="1" placeholder="?" autocomplete="off" aria-label="Answer for rule ${t.id}, ${t.title}" oninput="onAnswerEdited(${t.id})">
+    `;
+    termsColumn.appendChild(row);
+  });
+
+  const defList = document.getElementById("definitionsList");
+  definitionsByLetter.forEach(d => {
+    const div = document.createElement("div");
+    div.className = "def-item";
+    div.id = "def-item-" + d.letter;
+    div.innerHTML = `<span class="def-letter">${d.letter}.</span>${d.text}`;
+    defList.appendChild(div);
+  });
+}
+
+function getSelected(id) {
+  const input = document.getElementById("input-" + id);
+  return input ? input.value.trim().toUpperCase() : "";
+}
+
+// Editing a box after it was already sent makes it eligible to be
+// resent on the next Submit Activity click. Only letters A-H are kept.
+function onAnswerEdited(id) {
+  const input = document.getElementById("input-" + id);
+  const val = input.value.trim().toUpperCase();
+  if (val && !VALID_LETTERS.includes(val)) {
+    input.value = "";
+  }
+  alreadySubmitted[id] = false;
+  updateDefinitionStrikethrough();
+}
+
+// Strikes through any description (A-H) whose letter is currently typed
+// in at least one box. It does not indicate whether an answer is correct.
+function updateDefinitionStrikethrough() {
+  const usedLetters = new Set();
+  terms.forEach(t => {
+    const val = getSelected(t.id);
+    if (val) usedLetters.add(val);
+  });
+
+  definitionsByLetter.forEach(d => {
+    const defItem = document.getElementById("def-item-" + d.letter);
+    if (!defItem) return;
+    if (usedLetters.has(d.letter)) {
+      defItem.classList.add("revealed");
+    } else {
+      defItem.classList.remove("revealed");
+    }
+  });
+}
+
+function showScore(result) {
+  const box = document.getElementById("scoreBox");
+  const pct = Math.round(result.percent * 100);
+  const total = result.total || TOTAL_TERMS;
+  let note = "";
+  if (result.answered < total) {
+    note = `<div class="score-note">Unanswered rules count as incorrect until you answer them.</div>`;
+  }
+  box.innerHTML = `
+    <div class="score-label">Your score</div>
+    <div class="score-percent">${pct}%</div>
+    <div class="score-detail">${result.score} of ${total} correct</div>
+    ${note}`;
+  box.style.display = "block";
+}
+
+function submitQuiz() {
+  const name = document.getElementById("studentName").value.trim();
+  const statusMsg = document.getElementById("statusMsg");
+  const scoreBox = document.getElementById("scoreBox");
+
+  if (!name) {
+    alert("Please enter your name before submitting.");
+    return;
+  }
+
+  const answers = terms.map(t => {
+    if (alreadySubmitted[t.id]) return "";
+    const val = getSelected(t.id);
+    return val ? val : "";
+  });
+
+  const newlyIncludedIds = terms
+    .filter(t => !alreadySubmitted[t.id] && getSelected(t.id))
+    .map(t => t.id);
+
+  if (newlyIncludedIds.length === 0) {
+    alert("You haven't answered any new rules since your last submission. Answer at least one before submitting again.");
+    return;
+  }
+
+  const payload = {
+    timestamp: new Date().toISOString(),
+    student: name,
+    answers: answers
+  };
+
+  const submitBtn = document.getElementById("submitBtn");
+  submitBtn.disabled = true;
+  statusMsg.textContent = "Submitting...";
+  scoreBox.style.display = "none";
+
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(payload)
+  };
+
+  function markSent() {
+    newlyIncludedIds.forEach(id => { alreadySubmitted[id] = true; });
+    submitBtn.disabled = false;
+  }
+
+  // First try a normal request so the page can read the score the script sends back.
+  fetch(GAS_WEB_APP_URL, requestOptions)
+    .then(r => r.json())
+    .then(result => {
+      if (!result || result.ok !== true) {
+        throw new Error((result && result.error) || "Script error");
+      }
+      markSent();
+      statusMsg.textContent = "Submitted! Thank you, " + name + ".";
+      showScore(result);
+    })
+    .catch(() => {
+      // Fallback: resend without reading the reply. The script merges repeat
+      // answers safely, so a resend never creates a duplicate row.
+      fetch(GAS_WEB_APP_URL, Object.assign({ mode: "no-cors" }, requestOptions))
+        .then(() => {
+          markSent();
+          statusMsg.textContent = "Submitted! Thank you, " + name + ".";
+        })
+        .catch(() => {
+          statusMsg.textContent = "Submission may have failed - check your connection and try again.";
+          submitBtn.disabled = false;
+        });
+    });
+}
+
+buildActivity();
+updateDefinitionStrikethrough();
+</script>
+
+</body>
+</html>
